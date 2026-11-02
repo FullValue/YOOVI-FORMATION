@@ -1,0 +1,65 @@
+{
+  "_note": "Structure de départ proposée par l'équipe Yoovi. Aucune vidéo n'est renseignée : les emplacements affichent « Vidéo en préparation » tant qu'aucune URL n'est saisie dans le back-office.",
+  "organizations": [
+    { "name": "CCAS de Trappes", "kind": "CCAS", "city": "Trappes" }
+  ],
+  "modules": [
+    {
+      "slug": "decouvrir-yoovi",
+      "title": "Découvrir Yoovi",
+      "summary": "Comprendre ce qu'est Yoovi, comment il fonctionne et ce qu'il apporte aux élèves.",
+      "objective": "Comprendre ce qu'est Yoovi, son fonctionnement et sa proposition de valeur.",
+      "icon": "compass",
+      "color": "violet",
+      "lessons": [
+        "Présentation générale de Yoovi",
+        "La mission et le fonctionnement de Yoovi",
+        "À qui s'adresse Yoovi ?",
+        "Comment Yoovi accompagne les élèves",
+        "Les principales fonctionnalités de la plateforme"
+      ]
+    },
+    {
+      "slug": "prendre-en-main-la-plateforme",
+      "title": "Prendre en main la plateforme",
+      "summary": "Apprendre à utiliser concrètement Yoovi, de la création du compte au suivi de la progression.",
+      "objective": "Apprendre à utiliser concrètement Yoovi.",
+      "icon": "mouse-pointer-click",
+      "color": "bleu",
+      "lessons": [
+        "Présentation de l'interface",
+        "Création et gestion d'un compte",
+        "Navigation dans les différentes salles",
+        "Utilisation des salles par matière",
+        "Comprendre les parcours de révision",
+        "Utiliser les quiz et les flashcards",
+        "Générer et consulter des cartes mentales",
+        "Suivre sa progression"
+      ]
+    },
+    {
+      "slug": "accompagner-les-utilisateurs",
+      "title": "Accompagner les utilisateurs",
+      "summary": "Savoir présenter Yoovi à un élève et l'accompagner vers une utilisation pédagogique.",
+      "objective": "Comprendre comment accompagner les élèves dans l'utilisation de Yoovi.",
+      "icon": "hand-heart",
+      "color": "rose",
+      "lessons": [
+        "Comment présenter Yoovi à un élève ?",
+        "Comment expliquer le fonctionnement de l'IA ?",
+        "Comment encourager une utilisation pédagogique ?",
+        "Les bonnes pratiques d'accompagnement",
+        "Les réponses aux questions fréquentes"
+      ]
+    },
+    {
+      "slug": "ressources-et-bonnes-pratiques",
+      "title": "Ressources et bonnes pratiques",
+      "summary": "Guides d'utilisation, tutoriels complémentaires, documents PDF et ressources pédagogiques.",
+      "objective": "Centraliser les ressources utiles aux partenaires.",
+      "icon": "library",
+      "color": "jaune",
+      "lessons": []
+    }
+  ]
+}
