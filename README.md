@@ -1,6 +1,6 @@
 # Yoovi Formation — formation.yoovi.fr
 
-Plateforme de formation des partenaires B2B de Yoovi (premier partenaire : CCAS de Trappes) :
+Plateforme de formation des partenaires B2B de Yoovi :
 modules vidéo, progression individuelle, ressources PDF, support par e-mail et back-office complet.
 
 ## Démarrer en local (mode démo)
@@ -16,7 +16,7 @@ permanent. Comptes de test (proposés sur la page de connexion, mode démo uniqu
 
 | Compte | E-mail | Mot de passe |
 |---|---|---|
-| Partenaire · CCAS de Trappes | `demo.trappes@yoovi.demo` | `demo-partenaire` |
+| Espace formation | `demo@yoovi.demo` | `demo-partenaire` |
 | Super administrateur | `admin@yoovi.demo` | `demo-admin` |
 
 Supprimer `.data.nosync/` pour repartir du catalogue initial.
@@ -25,7 +25,7 @@ Supprimer `.data.nosync/` pour repartir du catalogue initial.
 
 1. Créer un projet Supabase **dédié** à formation.yoovi.fr (ne pas réutiliser la base de l'app élèves ni de Yoovi OS).
 2. SQL Editor : exécuter dans l'ordre `supabase/migrations/0001_schema.sql`, `0002_rls.sql`, `0003_storage.sql`, puis `supabase/seed.sql`
-   (catalogue de départ + organisme CCAS de Trappes).
+   (catalogue de départ + vidéos).
 3. Authentication → Providers : désactiver les inscriptions publiques (« Allow new users to sign up » : off). Les comptes sont créés par invitation.
 4. Authentication → URL configuration : Site URL = `https://formation.yoovi.fr`, Redirect URLs = `https://formation.yoovi.fr/auth/callback`.
 5. Authentication → Email templates (liens côté serveur, compatibles avec le rendu SSR) :

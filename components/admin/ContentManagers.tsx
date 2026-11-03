@@ -39,6 +39,11 @@ function VideoField({ initial, error }: { initial: string; error?: string }) {
           ) : (<><CircleAlert className="size-4 shrink-0" /> Lien non reconnu</>)}
         </div>
       )}
+      <label className="mt-3 block text-[13px] font-semibold text-ink">
+        Ou importer un fichier vidéo
+        <input type="file" name="videoFile" accept="video/mp4,video/webm,video/quicktime,.mp4,.mov,.m4v,.webm"
+          className="mt-1.5 block w-full text-[13px] text-muted file:mr-3 file:rounded-full file:border-0 file:bg-lavender file:px-4 file:py-2 file:font-semibold file:text-violet" />
+      </label>
     </div>
   );
 }

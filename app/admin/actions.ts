@@ -6,6 +6,8 @@ import { assertStaff, isSuperAdmin } from "@/lib/auth/session";
 import { getRepo } from "@/lib/data";
 import { slugify } from "@/lib/format";
 import { parseVideoInput } from "@/lib/video";
+import { isDemoMode } from "@/lib/env";
+import { saveUploadedVideo } from "@/lib/media";
 import type { ActionResult, SessionUser } from "@/lib/types";
 import { MODULE_COLORS, MODULE_ICONS } from "@/components/learning/icons";
 
@@ -312,7 +314,13 @@ const lessonSchema = z.object({
   status: z.enum(["draft", "published"]).default("published"),
 });
 
-function lessonData(form: FormData) {
+async function lessonData(form: FormData) {
+  const file = form.get("videoFile");
+  if (file instanceof File && file.size > 0) {
+    if (!isDemoMode) return { error: { ok: false as const, error: "L'import de fichier n'est disponible qu'en mode local : utilisez un lien.", fieldErrors: { video: "Import indisponible." } } };
+    if (!/\.(mp4|webm|mov|m4v)$/i.test(file.name)) return { error: { ok: false as const, error: "Format accepté : MP4, WebM ou MOV.", fieldErrors: { video: "Format non pris en charge." } } };
+    form.set("video", await saveUploadedVideo(file));
+  }
   const parsed = lessonSchema.safeParse({ title: str(form, "title"), description: str(form, "description") ?? "", status: str(form, "status") || "published" });
   if (!parsed.success) return { error: invalid(parsed.error) };
   const video = parseVideoInput(String(form.get("video") ?? ""));
@@ -324,7 +332,7 @@ function lessonData(form: FormData) {
 
 export async function createLessonAction(moduleId: string, _: Result | null, form: FormData): Promise<Result> {
   return run(async () => {
-    const r = lessonData(form);
+    const r = await lessonData(form);
     if ("error" in r) return r.error as Result;
     await (await getRepo()).createLesson(moduleId, r.data!);
     return { ok: true, message: "Vidéo ajoutée au module." };
@@ -333,7 +341,7 @@ export async function createLessonAction(moduleId: string, _: Result | null, for
 
 export async function updateLessonAction(id: string, _: Result | null, form: FormData): Promise<Result> {
   return run(async () => {
-    const r = lessonData(form);
+    const r = await lessonData(form);
     if ("error" in r) return r.error as Result;
     await (await getRepo()).updateLesson(id, r.data!);
     return { ok: true, message: "Vidéo enregistrée." };

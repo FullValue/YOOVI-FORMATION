@@ -17,7 +17,7 @@ export function parseVideoInput(input: string): { provider: VideoProvider; ref: 
     return { provider: "vimeo", ref: hash ? `${vimeo[1]}:${hash}` : vimeo[1] };
   }
 
-  if (/^https:\/\/.+\.(mp4|webm|m3u8)(\?.*)?$/i.test(value)) return { provider: "file", ref: value };
+  if (/^(https:\/\/.+|\/[\w\-/.]+)\.(mp4|webm|m3u8)(\?.*)?$/i.test(value)) return { provider: "file", ref: value };
   return null;
 }
 

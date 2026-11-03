@@ -50,10 +50,10 @@ console.log("Migrations + seed appliqués\n");
 const ids = {
   superAdmin: "00000000-0000-0000-0000-000000000001",
   admin: "00000000-0000-0000-0000-000000000002",
-  alice: "00000000-0000-0000-0000-00000000000a", // CCAS de Trappes
+  alice: "00000000-0000-0000-0000-00000000000a", // organisme Yoovi
   bob: "00000000-0000-0000-0000-00000000000b",   // Partenaire B
 };
-const orgA = (await db.query(`select id from public.organizations where name = 'CCAS de Trappes'`)).rows[0].id;
+const orgA = (await db.query(`select id from public.organizations where name = 'Yoovi'`)).rows[0].id;
 const orgB = (await db.query(`insert into public.organizations (name) values ('Partenaire B') returning id`)).rows[0].id;
 await db.query(`insert into public.organization_notes (organization_id, notes) values ($1, 'note interne A')`, [orgA]);
 

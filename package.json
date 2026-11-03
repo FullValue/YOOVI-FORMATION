@@ -5,7 +5,7 @@
   "description": "Plateforme de formation des partenaires Yoovi (formation.yoovi.fr)",
   "scripts": {
     "dev": "next dev -p 3100",
-    "build": "next build",
+    "build": "node scripts/prepare-public.mjs && next build",
     "start": "next start -p 3100",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

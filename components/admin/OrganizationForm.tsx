@@ -13,7 +13,7 @@ import { useActionToast } from "@/components/ui/Toast";
 function Fields({ org, errors }: { org?: Organization; errors?: Record<string, string> }) {
   return (
     <div className="grid gap-5 sm:grid-cols-2">
-      <TextField className="sm:col-span-2" label="Nom de l'organisme" name="name" required defaultValue={org?.name} placeholder="Ex. : CCAS de Trappes" error={errors?.name} />
+      <TextField className="sm:col-span-2" label="Nom de l'organisme" name="name" required defaultValue={org?.name} placeholder="Ex. : Mairie de …" error={errors?.name} />
       <SelectField label="Type" name="kind" defaultValue={org?.kind ?? "CCAS"}>
         {ORG_KINDS.map((k) => <option key={k}>{k}</option>)}
       </SelectField>

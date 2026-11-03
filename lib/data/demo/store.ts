@@ -1,5 +1,5 @@
 import "server-only";
-import { randomBytes, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
+import { createHash, randomBytes, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import catalog from "@/lib/seed/catalog.json";
@@ -12,7 +12,18 @@ import type {
    démonstration clairement identifiés. Supprimer .data/ pour repartir de zéro. */
 
 // « .nosync » : dossier ignoré par la synchronisation iCloud (le projet vit sur le Bureau)
-export const DATA_DIR = path.join(process.cwd(), ".data.nosync");
+// Sur Vercel, seul /tmp est inscriptible : les données y sont éphémères (réinitialisées au redémarrage).
+export const DATA_DIR = process.env.VERCEL ? "/tmp/yoovi-demo" : path.join(process.cwd(), ".data.nosync");
+
+/* Identifiants et secret déterministes : chaque instance serverless reconstruit la même base,
+   donc les liens et les sessions restent valides d'une instance à l'autre. */
+const stableId = (key: string) => {
+  const h = createHash("sha256").update(`yoovi-demo:${key}`).digest("hex");
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-4${h.slice(13, 16)}-a${h.slice(17, 20)}-${h.slice(20, 32)}`;
+};
+const demoSecret = () =>
+  process.env.YOOVI_DEMO_SECRET ??
+  (process.env.VERCEL ? createHash("sha256").update(`yoovi-demo-secret:${process.env.VERCEL_PROJECT_ID ?? ""}`).digest("hex") : randomBytes(32).toString("hex"));
 const DB_FILE = path.join(DATA_DIR, "demo-db.json");
 
 export interface DemoAuthUser { id: string; email: string; password_hash: string | null }
@@ -35,7 +46,7 @@ export interface DemoDb {
 
 /** Comptes de démonstration (mode démo uniquement — jamais créés dans Supabase). */
 export const DEMO_ACCOUNTS = [
-  { key: "partner", email: "demo.trappes@yoovi.demo", password: "demo-partenaire", label: "Partenaire · CCAS de Trappes", full_name: "Camille (compte démo)", job_title: "Référente démo" },
+  { key: "partner", email: "demo@yoovi.demo", password: "demo-partenaire", label: "Espace formation", full_name: "Camille", job_title: "Partenaire Yoovi" },
   { key: "super_admin", email: "admin@yoovi.demo", password: "demo-admin", label: "Super administrateur Yoovi", full_name: "Admin démo Yoovi", job_title: "Équipe Yoovi" },
 ] as const;
 
@@ -58,37 +69,37 @@ function seed(): DemoDb {
   const t = now();
   const db: DemoDb = {
     version: 1,
-    secret: randomBytes(32).toString("hex"),
+    secret: demoSecret(),
     users: [], tokens: [], profiles: [], organizations: [], organization_notes: {},
     organization_modules: [], modules: [], lessons: [], resources: [], progress: [],
   };
   for (const o of catalog.organizations) {
     db.organizations.push({
-      id: randomUUID(), name: o.name, kind: o.kind, city: o.city, contact_name: null, contact_email: null,
+      id: stableId(`org:${o.name}`), name: o.name, kind: o.kind, city: o.city, contact_name: null, contact_email: null,
       status: "active", catalog_mode: "all", created_at: t, updated_at: t,
     });
   }
   catalog.modules.forEach((m, i) => {
-    const id = randomUUID();
+    const id = stableId(`module:${m.slug}`);
     db.modules.push({
       id, slug: m.slug, title: m.title, summary: m.summary, objective: m.objective, icon: m.icon, color: m.color,
       thumbnail_url: null, position: i, status: "published", created_at: t, updated_at: t,
     });
-    m.lessons.forEach((title, j) => {
+    m.lessons.forEach((l, j) => {
       db.lessons.push({
-        id: randomUUID(), module_id: id, title, description: "", video_provider: "none", video_ref: null,
-        duration_seconds: null, position: j, status: "published", created_at: t,
+        id: stableId(`lesson:${m.slug}:${j}`), module_id: id, title: l.title, description: "", video_provider: "file", video_ref: l.video,
+        duration_seconds: l.duration, position: j, status: "published", created_at: t,
       });
     });
   });
-  const trappes = db.organizations[0];
+  const org = db.organizations[0];
   for (const a of DEMO_ACCOUNTS) {
-    const id = randomUUID();
+    const id = stableId(`user:${a.email}`);
     db.users.push({ id, email: a.email, password_hash: hashPassword(a.password) });
     db.profiles.push({
       id, email: a.email, full_name: a.full_name, job_title: a.job_title,
       role: a.key === "partner" ? "partner" : "super_admin",
-      organization_id: a.key === "partner" ? trappes.id : null,
+      organization_id: a.key === "partner" ? org.id : null,
       status: "active", last_seen_at: null, created_at: t,
     });
   }

@@ -1,65 +1,257 @@
 {
-  "_note": "Structure de départ proposée par l'équipe Yoovi. Aucune vidéo n'est renseignée : les emplacements affichent « Vidéo en préparation » tant qu'aucune URL n'est saisie dans le back-office.",
+  "_note": "Catalogue de départ : modules issus des vidéos de formation Yoovi (public/videos).",
   "organizations": [
-    { "name": "CCAS de Trappes", "kind": "CCAS", "city": "Trappes" }
+    {
+      "name": "Yoovi",
+      "kind": "Autre",
+      "city": null
+    }
   ],
   "modules": [
     {
-      "slug": "decouvrir-yoovi",
-      "title": "Découvrir Yoovi",
-      "summary": "Comprendre ce qu'est Yoovi, comment il fonctionne et ce qu'il apporte aux élèves.",
-      "objective": "Comprendre ce qu'est Yoovi, son fonctionnement et sa proposition de valeur.",
+      "slug": "tour-de-la-plateforme",
+      "title": "Le tour de la plateforme",
+      "summary": "Suivre le parcours d'un élève, de sa première connexion jusqu'à la salle virtuelle.",
+      "objective": "Connaître les espaces de Yoovi et savoir s'y repérer.",
       "icon": "compass",
       "color": "violet",
       "lessons": [
-        "Présentation générale de Yoovi",
-        "La mission et le fonctionnement de Yoovi",
-        "À qui s'adresse Yoovi ?",
-        "Comment Yoovi accompagne les élèves",
-        "Les principales fonctionnalités de la plateforme"
+        {
+          "title": "Le questionnaire d'arrivée",
+          "video": "/videos/m1-1.mp4",
+          "duration": 75
+        },
+        {
+          "title": "Le tableau de bord",
+          "video": "/videos/m1-2.mp4",
+          "duration": 34
+        },
+        {
+          "title": "Les salles d'étude",
+          "video": "/videos/m1-3.mp4",
+          "duration": 16
+        },
+        {
+          "title": "Notes & cartes mentales",
+          "video": "/videos/m1-4.mp4",
+          "duration": 29
+        },
+        {
+          "title": "L'historique d'activité",
+          "video": "/videos/m1-5.mp4",
+          "duration": 21
+        },
+        {
+          "title": "Le suivi des notes",
+          "video": "/videos/m1-6.mp4",
+          "duration": 29
+        },
+        {
+          "title": "Le compte & l'espace parent",
+          "video": "/videos/m1-7.mp4",
+          "duration": 18
+        },
+        {
+          "title": "La salle virtuelle",
+          "video": "/videos/m1-8.mp4",
+          "duration": 90
+        }
       ]
     },
     {
-      "slug": "prendre-en-main-la-plateforme",
-      "title": "Prendre en main la plateforme",
-      "summary": "Apprendre à utiliser concrètement Yoovi, de la création du compte au suivi de la progression.",
-      "objective": "Apprendre à utiliser concrètement Yoovi.",
-      "icon": "mouse-pointer-click",
+      "slug": "une-salle-en-action",
+      "title": "Une salle en action",
+      "summary": "Voir une salle de maths fonctionner : question, explication adaptée, exercices et correction de copie.",
+      "objective": "Savoir utiliser une salle d'étude du début à la fin.",
+      "icon": "monitor-play",
       "color": "bleu",
       "lessons": [
-        "Présentation de l'interface",
-        "Création et gestion d'un compte",
-        "Navigation dans les différentes salles",
-        "Utilisation des salles par matière",
-        "Comprendre les parcours de révision",
-        "Utiliser les quiz et les flashcards",
-        "Générer et consulter des cartes mentales",
-        "Suivre sa progression"
+        {
+          "title": "Entrer dans la salle de maths",
+          "video": "/videos/m2-1.mp4",
+          "duration": 36
+        },
+        {
+          "title": "Poser sa question",
+          "video": "/videos/m2-2.mp4",
+          "duration": 16
+        },
+        {
+          "title": "Une explication adaptée",
+          "video": "/videos/m2-3.mp4",
+          "duration": 30
+        },
+        {
+          "title": "S'entraîner avec des exercices",
+          "video": "/videos/m2-4.mp4",
+          "duration": 25
+        },
+        {
+          "title": "Se faire aider sur un exercice",
+          "video": "/videos/m2-5.mp4",
+          "duration": 26
+        },
+        {
+          "title": "Faire corriger sa copie",
+          "video": "/videos/m2-6.mp4",
+          "duration": 31
+        }
       ]
     },
     {
-      "slug": "accompagner-les-utilisateurs",
-      "title": "Accompagner les utilisateurs",
-      "summary": "Savoir présenter Yoovi à un élève et l'accompagner vers une utilisation pédagogique.",
-      "objective": "Comprendre comment accompagner les élèves dans l'utilisation de Yoovi.",
-      "icon": "hand-heart",
+      "slug": "espace-parent",
+      "title": "L'espace parent",
+      "summary": "Découvrir ce que les parents voient : tableau de bord, détail par matière et assistant parent.",
+      "objective": "Accompagner les familles dans le suivi de leur enfant.",
+      "icon": "users",
       "color": "rose",
       "lessons": [
-        "Comment présenter Yoovi à un élève ?",
-        "Comment expliquer le fonctionnement de l'IA ?",
-        "Comment encourager une utilisation pédagogique ?",
-        "Les bonnes pratiques d'accompagnement",
-        "Les réponses aux questions fréquentes"
+        {
+          "title": "Accéder à l'espace parent",
+          "video": "/videos/m3-1.mp4",
+          "duration": 32
+        },
+        {
+          "title": "Le tableau de bord parent",
+          "video": "/videos/m3-2.mp4",
+          "duration": 22
+        },
+        {
+          "title": "Le détail par matière",
+          "video": "/videos/m3-3.mp4",
+          "duration": 38
+        },
+        {
+          "title": "L'assistant parent",
+          "video": "/videos/m3-4.mp4",
+          "duration": 56
+        }
       ]
     },
     {
-      "slug": "ressources-et-bonnes-pratiques",
-      "title": "Ressources et bonnes pratiques",
-      "summary": "Guides d'utilisation, tutoriels complémentaires, documents PDF et ressources pédagogiques.",
-      "objective": "Centraliser les ressources utiles aux partenaires.",
-      "icon": "library",
+      "slug": "reviser-avec-yoovi",
+      "title": "Réviser avec Yoovi",
+      "summary": "Comprendre une notion, se tester, revoir ses erreurs, puis mémoriser avec flashcards, notes et cartes mentales.",
+      "objective": "Maîtriser les outils de révision de Yoovi.",
+      "icon": "graduation-cap",
       "color": "jaune",
-      "lessons": []
+      "lessons": [
+        {
+          "title": "Comprendre une notion",
+          "video": "/videos/m4-1.mp4",
+          "duration": 49
+        },
+        {
+          "title": "Se tester avec un quiz",
+          "video": "/videos/m4-2.mp4",
+          "duration": 25
+        },
+        {
+          "title": "Lire ses résultats",
+          "video": "/videos/m4-3.mp4",
+          "duration": 12
+        },
+        {
+          "title": "Revoir ses erreurs",
+          "video": "/videos/m4-4.mp4",
+          "duration": 31
+        },
+        {
+          "title": "Réflexion avancée & schémas",
+          "video": "/videos/m4-5.mp4",
+          "duration": 48
+        },
+        {
+          "title": "L'exercice rapide",
+          "video": "/videos/m4-6.mp4",
+          "duration": 45
+        },
+        {
+          "title": "Mémoriser avec les flashcards",
+          "video": "/videos/m4-7.mp4",
+          "duration": 58
+        },
+        {
+          "title": "Notes & cartes mentales",
+          "video": "/videos/m4-8.mp4",
+          "duration": 48
+        }
+      ]
+    },
+    {
+      "slug": "salle-guidee",
+      "title": "La salle guidée",
+      "summary": "Une session pas à pas : six étapes pour maîtriser une notion, avec des panneaux d'aide.",
+      "objective": "Savoir lancer et suivre une session guidée.",
+      "icon": "puzzle",
+      "color": "violet",
+      "lessons": [
+        {
+          "title": "Lancer une session guidée",
+          "video": "/videos/m5-1.mp4",
+          "duration": 37
+        },
+        {
+          "title": "Six étapes pour maîtriser",
+          "video": "/videos/m5-2.mp4",
+          "duration": 56
+        },
+        {
+          "title": "Les panneaux d'aide",
+          "video": "/videos/m5-3.mp4",
+          "duration": 40
+        }
+      ]
+    },
+    {
+      "slug": "parcours-de-revision",
+      "title": "Le parcours de révision",
+      "summary": "Un programme de séances planifiées qui mène l'élève jusqu'au contrôle blanc.",
+      "objective": "Comprendre et suivre un parcours de révision.",
+      "icon": "target",
+      "color": "bleu",
+      "lessons": [
+        {
+          "title": "Suivre son parcours",
+          "video": "/videos/m6-1.mp4",
+          "duration": 48
+        },
+        {
+          "title": "Une séance du parcours",
+          "video": "/videos/m6-2.mp4",
+          "duration": 33
+        },
+        {
+          "title": "Jusqu'au contrôle blanc",
+          "video": "/videos/m6-3.mp4",
+          "duration": 27
+        }
+      ]
+    },
+    {
+      "slug": "partage-d-ecran",
+      "title": "Le partage d'écran",
+      "summary": "Yoovi voit l'écran de l'élève et l'aide en direct, logiciel après logiciel.",
+      "objective": "Savoir utiliser le partage d'écran avec Yoovi.",
+      "icon": "lightbulb",
+      "color": "rose",
+      "lessons": [
+        {
+          "title": "Lancer le partage",
+          "video": "/videos/m7-1.mp4",
+          "duration": 33
+        },
+        {
+          "title": "Yoovi voit votre écran",
+          "video": "/videos/m7-2.mp4",
+          "duration": 19
+        },
+        {
+          "title": "Un cas concret : l'informatique",
+          "video": "/videos/m7-3.mp4",
+          "duration": 33
+        }
+      ]
     }
   ]
 }
