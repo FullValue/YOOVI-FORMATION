@@ -11,6 +11,9 @@ export const isSupabaseConfigured = Boolean(env.supabaseUrl && env.supabaseAnonK
 /** Mode démo : aucune base distante, données locales dans .data/, aucun e-mail envoyé. */
 export const isDemoMode = !isSupabaseConfigured;
 
+/** Bandeau et comptes de test affichés seulement avec YOOVI_SHOW_DEMO=1 (masqués par défaut). */
+export const showDemoUi = isDemoMode && process.env.YOOVI_SHOW_DEMO === "1";
+
 export function assertBackendAllowed() {
   if (isDemoMode && process.env.NODE_ENV === "production" && process.env.YOOVI_DEMO_MODE === "0") {
     throw new Error(

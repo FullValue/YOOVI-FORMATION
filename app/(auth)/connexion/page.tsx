@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { CircleCheck } from "lucide-react";
 import { getSessionUser, accessState, isStaff } from "@/lib/auth/session";
-import { isDemoMode } from "@/lib/env";
+import { showDemoUi } from "@/lib/env";
 import { LoginForm } from "./LoginForm";
 
 export const metadata: Metadata = { title: "Connexion" };
@@ -13,7 +13,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   if (user && accessState(user) === "ok") redirect(isStaff(user) ? "/admin" : "/tableau-de-bord");
 
   let demoAccounts: { email: string; password: string; label: string }[] | undefined;
-  if (isDemoMode) {
+  if (showDemoUi) {
     const { DEMO_ACCOUNTS } = await import("@/lib/data/demo/store");
     demoAccounts = DEMO_ACCOUNTS.map(({ email, password, label }) => ({ email, password, label }));
   }
