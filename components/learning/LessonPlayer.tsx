@@ -182,23 +182,23 @@ export function LessonPlayer({ module, lessons: initial, lesson, startAt, resour
         )}
 
         {/* Navigation précédente / suivante */}
-        <nav aria-label="Navigation entre les vidéos" className="mt-8 grid grid-cols-2 gap-3">
+        <nav aria-label="Navigation entre les vidéos" className="mt-8 grid gap-3 sm:grid-cols-2">
           {prev ? (
             <Link href={href(prev.id)} className="group flex items-center gap-3 rounded-2xl bg-white p-4 shadow-card transition hover:-translate-y-0.5 hover:shadow-lift">
               <ArrowLeft className="size-5 shrink-0 text-violet-500 transition group-hover:-translate-x-1" />
               <span className="min-w-0">
                 <span className="block text-[12px] font-semibold uppercase tracking-wide text-ink-faint">Vidéo précédente</span>
-                <span className="block truncate text-[14px] font-semibold">{prev.title}</span>
+                <span className="block text-[14px] sm:truncate font-semibold">{prev.title}</span>
               </span>
             </Link>
-          ) : <span />}
+          ) : <span className="hidden sm:block" />}
           {next ? (
             <Link href={href(next.id)}
               className={cn("group flex items-center justify-end gap-3 rounded-2xl p-4 text-right shadow-card transition hover:-translate-y-0.5 hover:shadow-lift",
                 done ? "bg-violet-500 text-white" : "bg-white")}>
               <span className="min-w-0">
                 <span className={cn("block text-[12px] font-semibold uppercase tracking-wide", done ? "text-white/75" : "text-ink-faint")}>Vidéo suivante</span>
-                <span className="block truncate text-[14px] font-semibold">{next.title}</span>
+                <span className="block text-[14px] sm:truncate font-semibold">{next.title}</span>
               </span>
               <ArrowRight className={cn("size-5 shrink-0 transition group-hover:translate-x-1", done ? "text-white" : "text-violet-500")} />
             </Link>
@@ -207,11 +207,11 @@ export function LessonPlayer({ module, lessons: initial, lesson, startAt, resour
               className="group flex items-center justify-end gap-3 rounded-2xl bg-white p-4 text-right shadow-card transition hover:-translate-y-0.5 hover:shadow-lift">
               <span className="min-w-0">
                 <span className="block text-[12px] font-semibold uppercase tracking-wide text-ink-faint">Module suivant</span>
-                <span className="block truncate text-[14px] font-semibold">{nextModule.title}</span>
+                <span className="block text-[14px] sm:truncate font-semibold">{nextModule.title}</span>
               </span>
               <ArrowRight className="size-5 shrink-0 text-violet-500 transition group-hover:translate-x-1" />
             </Link>
-          ) : <span />}
+          ) : <span className="hidden sm:block" />}
         </nav>
 
         {resources.length > 0 && (
