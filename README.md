@@ -38,8 +38,8 @@ Supprimer `.data.nosync/` pour repartir du catalogue initial.
    ```bash
    node --env-file=.env.local scripts/create-admin.mjs prenom@yoovi.fr "Prénom Nom"
    ```
-8. Déployer (Vercel ou équivalent Node) et pointer `formation.yoovi.fr` dessus. En production, le mode démo est refusé
-   tant que Supabase n'est pas configuré (sauf `YOOVI_DEMO_MODE=1`).
+8. Déployer (Vercel ou équivalent Node) et pointer `formation.yoovi.fr` dessus. Sans Supabase, l'application tourne en mode démo (données éphémères sur Vercel) ; il est refusé
+   seulement si `YOOVI_DEMO_MODE=0`.
 
 ## Architecture
 

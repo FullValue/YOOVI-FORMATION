@@ -12,10 +12,10 @@ export const isSupabaseConfigured = Boolean(env.supabaseUrl && env.supabaseAnonK
 export const isDemoMode = !isSupabaseConfigured;
 
 export function assertBackendAllowed() {
-  if (isDemoMode && process.env.NODE_ENV === "production" && process.env.YOOVI_DEMO_MODE !== "1") {
+  if (isDemoMode && process.env.NODE_ENV === "production" && process.env.YOOVI_DEMO_MODE === "0") {
     throw new Error(
       "Supabase n'est pas configuré (NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY). " +
-        "Le mode démo est refusé en production sauf si YOOVI_DEMO_MODE=1.",
+        "Le mode démo est refusé car YOOVI_DEMO_MODE=0.",
     );
   }
 }
